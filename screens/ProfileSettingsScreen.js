@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import Header from '../header/Header.js';
 
-const ProfileSettingsScreen = ({ navigation }) => {
-  const [firstName, setFirstName] = useState('Alvin');
-  const [lastName, setLastName] = useState('Harris');
-  const [email, setEmail] = useState('alvin.harris@gmail.com');
-  const [dob, setDob] = useState('01/01/1990'); // Date of Birth
+const ProfileSettingsScreen = ({ navigation }) => { 
+  const [nome, setNome] = useState('');
+  const [idade, setIdade] = useState('');
+  const [email, setEmail] = useState('');
+  const [curriculo, setCurriculo] = useState('');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="#333" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Editar Perfil</Text>
-        <View style={styles.avatarContainer}>
-          <Text style={styles.avatarText}>A</Text>
-          <Text style={styles.juniorText}>Júnior</Text>
-        </View>
-      </View>
+    <View style={styles.container}>
+      <Header
+        title="EDITAR PERFIL"
+        username="Júnior"
+        userInitial="A"
+        logo={require('../assets/logoHeader.png')}
+        onBackPress={() => navigation.goBack()}
+      />
 
       <ScrollView style={styles.content}>
         <View style={styles.profileHeader}>
@@ -30,22 +27,25 @@ const ProfileSettingsScreen = ({ navigation }) => {
         </View>
 
         <Text style={styles.sectionTitle}>Informações Pessoais</Text>
+
         <View style={styles.inputGroup}>
-          <Text style={styles.inputLabel}>Primeiro Nome</Text>
+          <Text style={styles.inputLabel}>Nome Completo</Text>
           <TextInput
             style={styles.input}
-            value={firstName}
-            onChangeText={setFirstName}
+            value={nome}
+            onChangeText={setNome}
           />
         </View>
+
         <View style={styles.inputGroup}>
-          <Text style={styles.inputLabel}>Sobrenome</Text>
+          <Text style={styles.inputLabel}>Idade</Text>
           <TextInput
             style={styles.input}
-            value={lastName}
-            onChangeText={setLastName}
+            value={idade}
+            onChangeText={setIdade}
           />
         </View>
+
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput
@@ -56,13 +56,13 @@ const ProfileSettingsScreen = ({ navigation }) => {
             autoCapitalize="none"
           />
         </View>
+
         <View style={styles.inputGroup}>
-          <Text style={styles.inputLabel}>Data de Nascimento</Text>
+          <Text style={styles.inputLabel}>Currículo</Text>
           <TextInput
             style={styles.input}
-            value={dob}
-            onChangeText={setDob}
-            placeholder="DD/MM/AAAA"
+            value={curriculo}
+            onChangeText={setCurriculo}
           />
         </View>
 
@@ -70,9 +70,7 @@ const ProfileSettingsScreen = ({ navigation }) => {
           <Text style={styles.saveButtonText}>Salvar Alterações</Text>
         </TouchableOpacity>
       </ScrollView>
-
-
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -80,39 +78,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F8F8',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 15,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333333',
-  },
-  avatarContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  avatarText: {
-    backgroundColor: '#007BFF',
-    color: '#FFFFFF',
-    borderRadius: 15,
-    width: 30,
-    height: 30,
-    textAlign: 'center',
-    lineHeight: 30,
-    fontWeight: 'bold',
-    marginRight: 5,
-  },
-  juniorText: {
-    fontSize: 14,
-    color: '#333333',
   },
   content: {
     flex: 1,
@@ -124,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   profileAvatar: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#1A498A',
     borderRadius: 50,
     width: 100,
     height: 100,
@@ -166,7 +131,7 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
   },
   saveButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#1A498A',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -175,26 +140,6 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: '#FFFFFF',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
-  bottomNavigation: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
-    backgroundColor: '#FFFFFF',
-    paddingVertical: 10,
-  },
-  navItem: {
-    alignItems: 'center',
-  },
-  navText: {
-    fontSize: 12,
-    color: '#888',
-  },
-  navTextActive: {
-    fontSize: 12,
-    color: '#007BFF',
     fontWeight: 'bold',
   },
 });
