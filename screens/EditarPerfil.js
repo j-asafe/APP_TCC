@@ -1,12 +1,35 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
+import * as DocumentPicker from 'expo-document-picker';
 import Header from '../header/Header.js';
 
-const ProfileSettingsScreen = ({ navigation }) => { 
+const ProfileSettingsScreen = ({ navigation }) => {
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
   const [email, setEmail] = useState('');
-  const [curriculo, setCurriculo] = useState('');
+  const [curriculo, setCurriculo] = useState(null);
+
+  const handleSelectCurriculo = async () => {
+  try {
+    const result = await DocumentPicker.getDocumentAsync({
+      type: ['application/pdf'],
+      copyToCacheDirectory: true,
+      multiple: false,
+    });
+
+    if (result.canceled) {
+      console.log('Usuário cancelou');
+      return;
+    }
+
+    const file = result.assets[0];
+    console.log('Arquivo selecionado:', file);
+    setCurriculo(file);
+  } catch (error) {
+    Alert.alert('Erro', 'Não foi possível selecionar o arquivo.');
+    console.log(error);
+  }
+};
 
   return (
     <View style={styles.container}>
@@ -30,20 +53,12 @@ const ProfileSettingsScreen = ({ navigation }) => {
 
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>Nome Completo</Text>
-          <TextInput
-            style={styles.input}
-            value={nome}
-            onChangeText={setNome}
-          />
+          <TextInput style={styles.input} value={nome} onChangeText={setNome} />
         </View>
 
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>Idade</Text>
-          <TextInput
-            style={styles.input}
-            value={idade}
-            onChangeText={setIdade}
-          />
+          <TextInput style={styles.input} value={idade} onChangeText={setIdade} keyboardType="numeric" />
         </View>
 
         <View style={styles.inputGroup}>
@@ -59,11 +74,11 @@ const ProfileSettingsScreen = ({ navigation }) => {
 
         <View style={styles.inputGroup}>
           <Text style={styles.inputLabel}>Currículo</Text>
-          <TextInput
-            style={styles.input}
-            value={curriculo}
-            onChangeText={setCurriculo}
-          />
+          <TouchableOpacity style={styles.uploadButton} onPress={handleSelectCurriculo}>
+            <Text style={styles.uploadButtonText}>
+              {curriculo ? curriculo.name : 'Selecionar arquivo'}
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.saveButton}>
@@ -130,6 +145,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
+  uploadButton: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    padding: 15,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    alignItems: 'center',
+  },
+  uploadButtonText: {
+    fontSize: 16,
+    color: '#1A498A',
+    fontWeight: '600',
+  },
   saveButton: {
     backgroundColor: '#1A498A',
     padding: 15,
@@ -145,3 +173,4 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileSettingsScreen;
+

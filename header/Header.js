@@ -1,15 +1,19 @@
+import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Header = ({ title, username, userInitial, logo, onBackPress }) => {
   const insets = useSafeAreaInsets();
 
   return (
     <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
+      
       <View style={styles.leftArea}>
+        <Image source={logo} style={styles.logo} resizeMode="contain" />
         {onBackPress && (
-          <TouchableOpacity onPress={onBackPress}>
-            <Image source={logo} style={styles.logo} />
+          <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
+            <Ionicons name="arrow-back-outline" size={30} color="#1A498A" />
           </TouchableOpacity>
         )}
       </View>
@@ -38,20 +42,29 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 4,
+    position: 'relative',
   },
   leftArea: {
-    width: 40,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   logo: {
     width: 28,
     height: 28,
+    marginBottom: 4,
+  },
+  backButton: {
+    alignItems: 'center',
   },
   title: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
     color: '#111',
+    bottom: 10,
   },
   userArea: {
     flexDirection: 'row',

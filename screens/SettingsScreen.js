@@ -66,7 +66,7 @@ const SettingsScreen = ({ navigation }) => {
           <Ionicons name="chevron-forward" size={20} color="#888" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.settingItem} onPress={() => navigation.navigate('ProfileSettings')}>
+        <TouchableOpacity style={styles.settingItem} onPress={() => navigation.navigate('EditarPerfil')}>
           <Text style={styles.settingText}>Configurações de Perfil</Text>
           <Ionicons name="chevron-forward" size={20} color="#888" />
         </TouchableOpacity>

@@ -11,7 +11,7 @@ import SimulAIDashboard from '../screens/SimulAIDashboard';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import HelpScreen from '../screens/HelpScreen';
-import ProfileSettingsScreen from '../screens/ProfileSettingsScreen';
+import EditarPerfilScreen from '../screens/EditarPerfil';
 import AIInterviewChatScreen from '../screens/AIInterviewChatScreen';
 
 const Stack = createStackNavigator();
@@ -57,7 +57,7 @@ function RootNavigator() {
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Qualification" component={QualificationScreen} />
       <Stack.Screen name="MainTabs" component={MainTabNavigator} />
-      <Stack.Screen name="ProfileSettings" component={ProfileSettingsScreen} />
+      <Stack.Screen name="EditarPerfil" component={EditarPerfilScreen} />
       <Stack.Screen name="AIInterviewChat" component={AIInterviewChatScreen} />
     </Stack.Navigator>
   );
