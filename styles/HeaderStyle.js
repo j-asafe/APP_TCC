@@ -4,42 +4,44 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     paddingHorizontal: 16,
+    height: 150, // maior para deixar espaço para seta + logo
     flexDirection: 'row',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingBottom: 10,
     elevation: 3,
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 4,
-    position: 'relative',
   },
+
   leftArea: {
-    justifyContent: 'center',
+    flexDirection: 'column', // seta em cima da logo
     alignItems: 'center',
   },
-  logo: {
-    width: 28,
-    height: 28,
-    marginBottom: 4,
-  },
+
   backButton: {
-    alignItems: 'center',
+    marginBottom: 4, // distância entre a seta e a logo
   },
+
+  logo: {
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
+  },
+
   title: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
+    flex: 1,
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',
     color: '#111',
-    bottom: 10,
   },
+
   userArea: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+
   avatar: {
     backgroundColor: '#1A498A',
     width: 30,
@@ -49,14 +51,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 4,
   },
+
   avatarText: {
     color: '#fff',
     fontWeight: 'bold',
   },
+
   username: {
     fontSize: 14,
     color: '#1A498A',
     fontWeight: '600',
   },
 });
+
 export default styles;

@@ -9,10 +9,11 @@ import SignUpScreen from '../screens/SignUpScreen';
 import QualificationScreen from '../screens/QualificationScreen';
 import SimulAIDashboard from '../screens/SimulAIDashboard';
 import HistoryScreen from '../screens/HistoryScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import HelpScreen from '../screens/HelpScreen';
-import EditarPerfilScreen from '../screens/EditarPerfil';
+import SettingsScreen from '../screens/ConfiguracaoScreen';
+import AjudaScreen from '../screens/AjudaScreen';
+import EditarPerfilScreen from '../screens/EditarPerfilScreen';
 import AIInterviewChatScreen from '../screens/AIInterviewChatScreen';
+import SplashScreen from '../screens/SplashScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,14 +46,15 @@ function MainTabNavigator() {
       <Tab.Screen name="SimulAIDashboard" component={SimulAIDashboard} options={{ title: 'SimulAI' }} />
       <Tab.Screen name="History" component={HistoryScreen} options={{ title: 'Histórico' }} />
       <Tab.Screen name="Settings" component={SettingsScreen} options={{ title: 'Configurações' }} />
-      <Tab.Screen name="Help" component={HelpScreen} options={{ title: 'Ajuda' }} />
+      <Tab.Screen name="Help" component={AjudaScreen} options={{ title: 'Ajuda' }} />
     </Tab.Navigator>
   );
 }
 
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Qualification" component={QualificationScreen} />
@@ -62,5 +64,6 @@ function RootNavigator() {
     </Stack.Navigator>
   );
 }
+
 
 export default RootNavigator;
