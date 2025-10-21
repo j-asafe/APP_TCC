@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const QualificationScreen = ({ navigation }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -12,16 +12,14 @@ const QualificationScreen = ({ navigation }) => {
   ];
 
   const handleContinue = () => {
-    // Lógica para continuar, talvez navegar para a próxima tela
     console.log('Opção selecionada:', selectedOption);
-    navigation.navigate('SimulAIDashboard'); // Exemplo de navegação
+    navigation.navigate('SimulAIDashboard');
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          {/* Ícone de voltar */}
           <Text style={styles.backButton}>{'<'}</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Qualificação Técnica</Text>
@@ -54,7 +52,7 @@ const QualificationScreen = ({ navigation }) => {
           <Text style={styles.continueButtonText}>Continuar</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
