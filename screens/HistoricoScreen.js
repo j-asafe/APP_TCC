@@ -11,7 +11,7 @@ const HistoricoScreen = ({ navigation }) => {
 
   const fetchInterviews = async () => {
     try {
-      // ⚠️ substitui pela tua rota depois
+  
       const response = await axios.get(''); 
       setInterviews(response.data);
     } catch (error) {
