@@ -1,17 +1,27 @@
 import { StyleSheet } from 'react-native';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F8F8',
   },
-  content: {
-    flex: 1,
-    padding: 20,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 15,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333333',
   },
   profileHeader: {
-    alignItems: 'center',
-    marginBottom: 30,
-    marginTop: 20,
+    alignItems: 'center', // centraliza horizontalmente
+    marginVertical: 20,
   },
   profileAvatar: {
     backgroundColor: '#1A498A',
@@ -31,13 +41,18 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     color: '#333333',
+    textAlign: 'center', // garante centralização do texto
+  },
+  content: {
+    flex: 1,
+    padding: 20,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333333',
     marginBottom: 15,
-    marginTop: 20,
+    marginTop: 10,
   },
   inputGroup: {
     marginBottom: 15,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Switch, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../header/Header';
-import styles from '../styles/HeaderStyle';
+import styles from '../styles/ConfiguracaoStyle';
 
 const ConfiguracaoScreen = ({ navigation }) => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);

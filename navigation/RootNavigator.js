@@ -8,7 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import QualificationScreen from '../screens/QualificationScreen';
 import SimulAIDashboard from '../screens/SimulAIDashboard';
-import HistoryScreen from '../screens/HistoryScreen';
+import HistoryScreen from '../screens/HistoricoScreen';
 import SettingsScreen from '../screens/ConfiguracaoScreen';
 import AjudaScreen from '../screens/AjudaScreen';
 import EditarPerfilScreen from '../screens/EditarPerfilScreen';
