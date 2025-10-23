@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   contactButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#1A498A',
     padding: 12,
     borderRadius: 8,
   },

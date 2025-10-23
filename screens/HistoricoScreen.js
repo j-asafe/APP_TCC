@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import styles from "../styles/HistoricoStyle";
-import Header from '../header/Header'; // Import do Header customizado
+import Header from '../header/Header';
 
 const HistoricoScreen = ({ navigation }) => {
   const [interviews, setInterviews] = useState([]);
@@ -32,7 +32,6 @@ const HistoricoScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
-      {/* Header customizado */}
       <Header
         title="HISTÓRICO"
         username="Júnior"
@@ -41,7 +40,6 @@ const HistoricoScreen = ({ navigation }) => {
         onBackPress={() => navigation.goBack()}
       />
 
-      {/* Conteúdo */}
       {loading ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#007BFF" />

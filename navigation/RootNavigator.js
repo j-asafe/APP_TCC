@@ -5,8 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Importação das telas
 import LoginScreen from '../screens/LoginScreen';
-import SignUpScreen from '../screens/SignUpScreen';
-import QualificationScreen from '../screens/QualificationScreen';
+import CadastrarScreen from '../screens/CadastrarScreen';
+import QualificacaoScreen from '../screens/QualificacaoScreen';
 import SimulAIDashboard from '../screens/SimulAIDashboard';
 import HistoryScreen from '../screens/HistoricoScreen';
 import SettingsScreen from '../screens/ConfiguracaoScreen';
@@ -37,10 +37,10 @@ function MainTabNavigator() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#007BFF',
+        tabBarActiveTintColor: '#1A498A',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: { backgroundColor: '#FFFFFF' },
-        headerShown: false, // Hide header for tab screens as they have custom headers
+        headerShown: false,
       })}
     >
       <Tab.Screen name="SimulAIDashboard" component={SimulAIDashboard} options={{ title: 'SimulAI' }} />
@@ -56,8 +56,8 @@ function RootNavigator() {
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="SignUp" component={SignUpScreen} />
-      <Stack.Screen name="Qualification" component={QualificationScreen} />
+      <Stack.Screen name="SignUp" component={CadastrarScreen} />
+      <Stack.Screen name="Qualification" component={QualificacaoScreen} />
       <Stack.Screen name="MainTabs" component={MainTabNavigator} />
       <Stack.Screen name="EditarPerfil" component={EditarPerfilScreen} />
       <Stack.Screen name="AIInterviewChat" component={AIInterviewChatScreen} />

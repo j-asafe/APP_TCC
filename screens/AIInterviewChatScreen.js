@@ -18,12 +18,12 @@ const AIInterviewChatScreen = ({ navigation }) => {
       };
       setMessages(prevMessages => [...prevMessages, newMessage]);
       setInputText('');
-      // Simulate AI response after a short delay
+  
       setTimeout(() => {
         const aiResponse = {
           id: messages.length + 2,
           sender: 'AI',
-          text: 'ok', // AI always responds with 'ok'
+          text: 'ok', 
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         };
         setMessages(prevMessages => [...prevMessages, aiResponse]);

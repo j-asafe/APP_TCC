@@ -29,7 +29,7 @@ const ConfiguracaoScreen = ({ navigation }) => {
             <Switch
               onValueChange={setNotificationsEnabled}
               value={notificationsEnabled}
-              trackColor={{ false: "#767577", true: "#007BFF" }}
+              trackColor={{ false: "#767577", true: "#1A498A" }}
               thumbColor={notificationsEnabled ? "#FFFFFF" : "#f4f3f4"}
             />
           </View>

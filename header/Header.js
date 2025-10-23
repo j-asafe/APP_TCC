@@ -8,11 +8,10 @@ import styles from '../styles/HeaderStyle';
 const Header = ({ title, username, userInitial, logo, onBackPress }) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const parentNav = navigation.getParent(); // <- pega o navigator pai (RootStack)
+  const parentNav = navigation.getParent();
 
   return (
     <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
-      {/* Área esquerda (seta + logo) */}
       <View style={styles.leftArea}>
         {onBackPress && (
           <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
@@ -22,22 +21,19 @@ const Header = ({ title, username, userInitial, logo, onBackPress }) => {
         <Image source={logo} style={styles.logo} />
       </View>
 
-      {/* Título central */}
       <Text style={styles.title} numberOfLines={1}>
         {title}
       </Text>
 
-      {/* Usuário à direita */}
-      <View style={styles.userArea}>
-        <TouchableOpacity
-          onPress={() => parentNav?.navigate('EditarPerfil')}
-        >
-          <View style={styles.avatar}>
-            <Text style={styles.avatarText}>{userInitial}</Text>
-          </View>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.userArea}
+        onPress={() => parentNav?.navigate('EditarPerfil')}
+      >
+        <View style={styles.avatar}>
+          <Text style={styles.avatarText}>{userInitial}</Text>
+        </View>
         <Text style={styles.username}>{username}</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

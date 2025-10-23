@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, LayoutAnimation, Platform, UIManager } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, LayoutAnimation, Platform, UIManager, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../header/Header.js';
 import styles from '../styles/AjudaStyle.js';
@@ -7,7 +7,6 @@ import styles from '../styles/AjudaStyle.js';
 const AjudaScreen = ({ navigation }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
 
-  // Habilitar animação no Android
   if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
@@ -27,6 +26,22 @@ const AjudaScreen = ({ navigation }) => {
     } else {
       setOpenIndexes([...openIndexes, index]);
     }
+  };
+
+  // Função para abrir WhatsApp
+  const openWhatsApp = () => {
+    const message = 'Olá, preciso de ajuda com o aplicativo.';
+    const url = `https://wa.me/${+5511990062510}?text=${encodeURIComponent(message)}`;
+
+    Linking.canOpenURL(url)
+      .then(supported => {
+        if (supported) {
+          return Linking.openURL(url);
+        } else {
+          alert('Não foi possível abrir o WhatsApp.');
+        }
+      })
+      .catch(err => console.error('Erro ao abrir WhatsApp:', err));
   };
 
   return (
@@ -74,7 +89,7 @@ const AjudaScreen = ({ navigation }) => {
           <Text style={styles.needHelpText}>
             Se você não encontrou o que procurava, nossa equipe de suporte está pronta
           </Text>
-          <TouchableOpacity style={styles.contactButton}>
+          <TouchableOpacity style={styles.contactButton} onPress={openWhatsApp}>
             <Text style={styles.contactButtonText}>Entrar em Contato</Text>
           </TouchableOpacity>
         </View>

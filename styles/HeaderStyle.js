@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     paddingHorizontal: 16,
-    height: 150, // maior para deixar espaço para seta + logo
+    height: 150, 
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
   },
 
   leftArea: {
-    flexDirection: 'column', // seta em cima da logo
+    flexDirection: 'column',
     alignItems: 'center',
   },
 
   backButton: {
-    marginBottom: 4, // distância entre a seta e a logo
+    marginBottom: 4,
   },
 
   logo: {
