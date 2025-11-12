@@ -1,0 +1,57 @@
+import { StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f2f2f2' },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#4F8EF7',
+    padding: 20,
+    paddingTop: 40,
+  },
+  headerTitle: { color: '#fff', fontSize: 22, fontWeight: 'bold' },
+  cardsContainer: { flexDirection: 'row', paddingVertical: 20, paddingLeft: 20 },
+  card: {
+    backgroundColor: '#fff',
+    width: 140,
+    borderRadius: 16,
+    padding: 15,
+    marginRight: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  cardTitle: { fontSize: 14, color: '#666', marginTop: 10 },
+  cardValue: { fontSize: 18, fontWeight: 'bold', marginTop: 5 },
+  chartContainer: { paddingHorizontal: 20, marginBottom: 20 },
+  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
+  listContainer: { paddingHorizontal: 20, marginBottom: 20 },
+  listItem: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  listItemTitle: { fontSize: 16 },
+  listItemStatus: { fontSize: 14, color: '#888' },
+  actionsContainer: { flexDirection: 'row', justifyContent: 'space-around', paddingBottom: 30 },
+  actionButton: {
+    backgroundColor: '#4F8EF7',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 12,
+  },
+  actionText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
+});
+
+export default styles;

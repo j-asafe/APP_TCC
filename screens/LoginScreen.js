@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import axios from 'axios';
+import api from '../services/api';
 import styles from "../styles/LoginStyle";
 
 const LoginScreen = ({ navigation }) => {
@@ -17,7 +17,8 @@ const LoginScreen = ({ navigation }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post(API_URL, {
+      // Envia a requisição de login para a API
+      const response = await api.post('/login', {
         email: email.trim(),
         senha,
       });
@@ -26,10 +27,10 @@ const LoginScreen = ({ navigation }) => {
         Alert.alert('Sucesso', 'Login realizado com sucesso!');
         navigation.navigate('MainTabs', { user: response.data.user });
       } else {
-        Alert.alert('Erro', 'Email ou senha incorretos.');
+        Alert.alert('Erro', response.data.message || 'Email ou senha incorretos.');
       }
     } catch (error) {
-      console.error(error);
+      console.error(error.response?.data || error.message);
       Alert.alert('Erro', 'Falha ao conectar-se ao servidor.');
     } finally {
       setLoading(false);
@@ -67,7 +68,7 @@ const LoginScreen = ({ navigation }) => {
           />
 
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, loading && { opacity: 0.7 }]}
             onPress={handleLogin}
             disabled={loading}
           >

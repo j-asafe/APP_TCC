@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Switch, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Switch,
+  ScrollView,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import axios from 'axios';
-import styles from "../styles/CadastrarStyle";
+import api from '../services/api';
+import styles from '../styles/CadastrarStyle';
 
 const CadastrarScreen = ({ navigation }) => {
   const [nome, setNome] = useState('');
@@ -12,14 +21,14 @@ const CadastrarScreen = ({ navigation }) => {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Validação de senha
+  // ✅ Validação da senha
   const validarSenha = (senha) => {
     const regex =
       /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
     return regex.test(senha);
   };
 
-  // Função para criar conta
+  // ✅ Função de cadastro
   const handleSignUp = async () => {
     if (!nome || !email || !senha || !confirmSenha) {
       Alert.alert('Erro', 'Preencha todos os campos.');
@@ -46,17 +55,29 @@ const CadastrarScreen = ({ navigation }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post(API_URL, { nome, email, senha });
+      // ✅ Aqui usamos o endpoint correto da sua API
+      const response = await api.post('/register', {
+        nome: nome,
+        email: email,
+        senha: senha,
+      });
 
-      if (response.data.success) {
+      if (response.data?.success) {
         Alert.alert('Sucesso', 'Conta criada com sucesso!');
         navigation.navigate('Login');
       } else {
-        Alert.alert('Erro', response.data.message || 'Falha ao criar conta.');
+        Alert.alert('Erro', response.data?.message || 'Falha ao criar conta.');
       }
     } catch (error) {
-      console.error(error);
-      Alert.alert('Erro', 'Não foi possível conectar-se ao servidor.');
+      console.error('Erro no cadastro:', error.response?.data || error.message);
+      if (error.response?.status === 404) {
+        Alert.alert(
+          'Erro',
+          'Endpoint /register não encontrado. Verifique a rota do backend.'
+        );
+      } else {
+        Alert.alert('Erro', 'Não foi possível conectar-se ao servidor.');
+      }
     } finally {
       setLoading(false);
     }
@@ -110,16 +131,21 @@ const CadastrarScreen = ({ navigation }) => {
             <Switch
               onValueChange={setAcceptTerms}
               value={acceptTerms}
-              trackColor={{ false: "#767577", true: "#007BFF" }}
-              thumbColor={acceptTerms ? "#FFFFFF" : "#f4f3f4"}
+              trackColor={{ false: '#767577', true: '#007BFF' }}
+              thumbColor={acceptTerms ? '#FFFFFF' : '#f4f3f4'}
             />
-            <TouchableOpacity onPress={() => navigation.navigate('Terms')}>
-              <Text style={styles.termsTextLink}>Aceitar Termos de Uso</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('TermosScreen')}
+            >
+              <Text style={styles.termsTextLink}>Ler Termos de Uso</Text>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity
-            style={[styles.button, (!acceptTerms || loading) && styles.buttonDisabled]}
+            style={[
+              styles.button,
+              (!acceptTerms || loading) && styles.buttonDisabled,
+            ]}
             disabled={!acceptTerms || loading}
             onPress={handleSignUp}
           >
