@@ -15,12 +15,17 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
 
+    const data = {
+      email: email.trim(),
+      password: senha
+    }
     setLoading(true);
     try {
       // Envia a requisição de login para a API
-      const response = await api.post('/login', {
-        email: email.trim(),
-        senha,
+      const response = await api.post('/login', data, {
+        headers: {
+          "X-Client-Agent": "MeuAppMobile/1.0 (React Native)"
+        }
       });
 
       if (response.data.success) {

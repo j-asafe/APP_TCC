@@ -17,20 +17,19 @@ const CadastrarScreen = ({ navigation }) => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [idade, setIdade] = useState(0);
   const [confirmSenha, setConfirmSenha] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Validação da senha
   const validarSenha = (senha) => {
     const regex =
       /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
     return regex.test(senha);
   };
 
-  // ✅ Função de cadastro
   const handleSignUp = async () => {
-    if (!nome || !email || !senha || !confirmSenha) {
+    if (!nome || !email || !senha || !confirmSenha || !idade) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return;
     }
@@ -53,16 +52,26 @@ const CadastrarScreen = ({ navigation }) => {
       return;
     }
 
+    const data = {
+      name: nome,
+      email: email,
+      age: idade,
+      password: senha
+    }
+
+    console.log(data)
+
     setLoading(true);
     try {
-      // ✅ Aqui usamos o endpoint correto da sua API
-      const response = await api.post('/register', {
-        nome: nome,
-        email: email,
-        senha: senha,
+      const response = await api.post('/user', data, {
+        headers: {
+          "X-Client-Agent": "MeuAppMobile/1.0 (React Native)"
+        }
       });
+      console.log(response)
+      console.log(response.data)
 
-      if (response.data?.success) {
+      if (response) {
         Alert.alert('Sucesso', 'Conta criada com sucesso!');
         navigation.navigate('Login');
       } else {
@@ -70,6 +79,7 @@ const CadastrarScreen = ({ navigation }) => {
       }
     } catch (error) {
       console.error('Erro no cadastro:', error.response?.data || error.message);
+      console.log(error.message)
       if (error.response?.status === 404) {
         Alert.alert(
           'Erro',
@@ -109,6 +119,13 @@ const CadastrarScreen = ({ navigation }) => {
             autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Idade"
+            placeholderTextColor="#666"
+            value={idade}
+            onChangeText={setIdade}
           />
           <TextInput
             style={styles.input}

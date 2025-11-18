@@ -16,7 +16,7 @@ import SimulAIDashboard from '../screens/SimulAIDashboard';
 import HistoryScreen from '../screens/HistoricoScreen';
 import SettingsScreen from '../screens/ConfiguracaoScreen';
 import AjudaScreen from '../screens/AjudaScreen';
-import AllnterviewChatScreenHybrid from '../screens/AIInterviewChatScreenHybrid.js';
+import lnterviewChatScreen from '../screens/InterviewChatScreen.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,7 +86,7 @@ function RootNavigator() {
       <Stack.Screen name="Qualification" component={QualificacaoScreen} />
       <Stack.Screen name="MainTabs" component={MainTabNavigator} />
       <Stack.Screen name="EditarPerfil" component={EditarPerfilScreen} />
-      <Stack.Screen name="AIInterviewChat" component={AllnterviewChatScreenHybrid} />
+      <Stack.Screen name="InterviewChat" component={lnterviewChatScreen} />
     </Stack.Navigator>
   );
 }

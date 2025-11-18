@@ -1,5 +1,6 @@
 // SimulaDashboard.js
 import React from 'react';
+import styles from '../styles/SimulAIDashboardStyle';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LineChart } from 'react-native-chart-kit';
